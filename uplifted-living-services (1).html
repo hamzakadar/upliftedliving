@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uplifted Living Services | Uplifting Lives Through Compassionate Care</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --snow: #FDFBF8;
+    --white: #FFFFFF;
+    --blush: #F7F2EC;
+    --taupe: #E8E0D5;
+    --stone: #C4BAB0;
+    --lavender: #9B8DB5;
+    --lavender-dark: #6E5E8E;
+    --lavender-pale: #F0EDF6;
+    --lavender-mid: #DDD7EC;
+    --gold: #C4973E;
+    --gold-pale: #FAF2E1;
+    --gold-mid: #EDD89A;
+    --charcoal: #2B2730;
+    --muted: #7A7180;
+    --gap: 108px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--snow);
+    color: var(--charcoal);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 54px;
+    background: rgba(253,251,248,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--taupe);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(43,39,48,0.07); }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .logo-mark {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--lavender-dark) 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-mark svg { width: 17px; height: 17px; }
+  .logo-text {}
+  .logo-name {
+    font-family: 'Spectral', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--charcoal);
+    display: block;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .logo-tag {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    display: block;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 34px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--lavender);
+    transition: width 0.25s;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-pill {
+    background: var(--lavender) !important;
+    color: #fff !important;
+    padding: 9px 22px !important;
+    border-radius: 100px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em !important;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+    box-shadow: 0 4px 16px rgba(155,141,181,0.3) !important;
+  }
+  .nav-pill::after { display: none !important; }
+  .nav-pill:hover { background: var(--lavender-dark) !important; transform: translateY(-1px) !important; box-shadow: 0 8px 24px rgba(155,141,181,0.4) !important; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--charcoal); border-radius: 2px; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    padding-top: 72px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  .hero-bg-blob {
+    position: absolute;
+    right: -120px; top: 50%;
+    transform: translateY(-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--lavender-pale) 0%, rgba(240,237,246,0) 70%);
+    z-index: 0;
+  }
+  .hero-bg-blob2 {
+    position: absolute;
+    left: -80px; bottom: -80px;
+    width: 360px; height: 360px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--gold-pale) 0%, transparent 70%);
+    z-index: 0;
+  }
+  .hero-ring {
+    position: absolute;
+    right: 14%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 1px solid rgba(155,141,181,0.18);
+    z-index: 1;
+  }
+  .hero-ring2 {
+    position: absolute;
+    right: 11%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 520px; height: 520px;
+    border-radius: 50%;
+    border: 1px solid rgba(155,141,181,0.1);
+    z-index: 1;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 54px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .hero-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--lavender-pale);
+    border: 1px solid var(--lavender-mid);
+    color: var(--lavender-dark);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 26px;
+  }
+  .kicker-star {
+    width: 8px; height: 8px;
+    background: var(--lavender);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  }
+
+  .hero-h1 {
+    font-family: 'Spectral', serif;
+    font-size: clamp(40px, 4.8vw, 62px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--charcoal);
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    font-weight: 600;
+    color: var(--lavender);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.85;
+    max-width: 460px;
+    margin-bottom: 42px;
+  }
+
+  .hero-btns { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+  .btn-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--lavender);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 16px 34px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 8px 28px rgba(155,141,181,0.32);
+  }
+  .btn-main:hover { background: var(--lavender-dark); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(155,141,181,0.42); }
+  .btn-main svg { transition: transform 0.2s; }
+  .btn-main:hover svg { transform: translateX(4px); }
+
+  .hero-phone { font-size: 14px; color: var(--muted); }
+  .hero-phone a { color: var(--charcoal); font-weight: 600; text-decoration: none; }
+  .hero-phone a:hover { color: var(--lavender); }
+
+  .hero-right { display: flex; flex-direction: column; gap: 16px; }
+
+  .float-card {
+    background: #fff;
+    border: 1px solid var(--taupe);
+    border-radius: 18px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(43,39,48,0.05);
+    animation: uplift 5s ease-in-out infinite;
+  }
+  .float-card:nth-child(2) { animation-delay: 1.7s; margin-left: 32px; }
+  .float-card:nth-child(3) { animation-delay: 3.4s; }
+  @keyframes uplift {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .fc-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .fci-lav { background: var(--lavender-pale); }
+  .fci-gold { background: var(--gold-pale); }
+  .fci-taupe { background: var(--blush); }
+  .fc-txt strong { display: block; font-size: 13.5px; font-weight: 600; color: var(--charcoal); margin-bottom: 2px; }
+  .fc-txt span { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+  /* ── SERVICES ── */
+  #services {
+    background: var(--blush);
+    padding: var(--gap) 0;
+  }
+  .svc-wrap { max-width: 1200px; margin: 0 auto; padding: 0 54px; }
+  .sec-center { text-align: center; margin-bottom: 60px; }
+  .sec-eyebrow {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .sec-eyebrow::before, .sec-eyebrow::after { content: ''; width: 22px; height: 1px; background: var(--gold); }
+  .sec-title {
+    font-family: 'Spectral', serif;
+    font-size: clamp(30px, 3.2vw, 44px);
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .svc-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+  .s-card {
+    background: var(--white);
+    border-radius: 22px;
+    padding: 38px 30px;
+    border: 1px solid rgba(196,186,176,0.5);
+    transition: transform 0.28s, box-shadow 0.28s;
+    position: relative;
+    overflow: hidden;
+  }
+  .s-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--lavender), var(--gold));
+    opacity: 0;
+    transition: opacity 0.28s;
+  }
+  .s-card:hover { transform: translateY(-8px); box-shadow: 0 20px 56px rgba(43,39,48,0.09); }
+  .s-card:hover::after { opacity: 1; }
+  .s-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--lavender-pale); display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 22px; }
+  .s-card h3 { font-family: 'Spectral', serif; font-size: 21px; font-weight: 700; color: var(--charcoal); margin-bottom: 12px; line-height: 1.25; }
+  .s-card p { font-size: 14.5px; font-weight: 300; color: var(--muted); line-height: 1.8; }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--charcoal);
+    padding: var(--gap) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-orb {
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155,141,181,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-orb2 {
+    position: absolute;
+    left: -50px; bottom: -50px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,151,62,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 54px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .a-eyebrow {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .a-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--gold-mid); }
+  .a-title {
+    font-family: 'Spectral', serif;
+    font-size: clamp(30px, 3.2vw, 44px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  .a-text { font-size: 15.5px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.9; margin-bottom: 34px; }
+  .w-tags { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .w-tag {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(155,141,181,0.25);
+    border-radius: 8px;
+    padding: 11px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+  }
+  .w-tag:hover { background: rgba(155,141,181,0.12); }
+  .w-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--lavender); flex-shrink: 0; }
+
+  .about-panels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .a-panel {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 26px 20px;
+    transition: background 0.2s;
+  }
+  .a-panel:hover { background: rgba(255,255,255,0.08); }
+  .a-panel .ico { font-size: 26px; margin-bottom: 12px; }
+  .a-panel h4 { font-family: 'Spectral', serif; font-size: 21px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .a-panel p { font-size: 12.5px; font-weight: 300; color: rgba(255,255,255,0.44); line-height: 1.6; }
+
+  /* ── PROGRAM ── */
+  #program { background: var(--snow); padding: var(--gap) 0; }
+  .prog-wrap { max-width: 1200px; margin: 0 auto; padding: 0 54px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .p-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .p-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--gold); }
+  .p-title { font-family: 'Spectral', serif; font-size: clamp(30px,3.2vw,44px); font-weight: 700; color: var(--charcoal); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .p-text { font-size: 15.5px; font-weight: 300; color: var(--muted); line-height: 1.9; }
+
+  .prog-panel {
+    background: linear-gradient(148deg, var(--lavender-pale) 0%, var(--lavender-mid) 100%);
+    border-radius: 26px;
+    padding: 46px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .prog-panel::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(155,141,181,0.2);
+    pointer-events: none;
+  }
+  .prog-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(196,151,62,0.1);
+    pointer-events: none;
+  }
+  .prog-panel h3 { font-family: 'Spectral', serif; font-size: 20px; font-weight: 700; color: var(--lavender-dark); margin-bottom: 26px; position: relative; z-index: 1; }
+  .prog-list { list-style: none; display: flex; flex-direction: column; gap: 13px; position: relative; z-index: 1; }
+  .prog-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14.5px; font-weight: 400; color: var(--charcoal); line-height: 1.6; }
+  .prog-list li .tick {
+    flex-shrink: 0; width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--lavender);
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .prog-list li .tick::after { content: ''; width: 5px; height: 8px; border: 1.5px solid #fff; border-top: none; border-left: none; transform: rotate(45deg) translateY(-1px) translateX(1px); display: block; }
+
+  /* ── LOCATIONS ── */
+  #locations { background: var(--blush); padding: var(--gap) 0; }
+  .loc-wrap { max-width: 1200px; margin: 0 auto; padding: 0 54px; }
+  .loc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 980px; margin: 0 auto; }
+  .loc-card {
+    background: var(--white);
+    border: 1px solid var(--taupe);
+    border-radius: 18px;
+    padding: 34px 28px;
+    display: flex; align-items: center; gap: 18px;
+    transition: transform 0.22s, box-shadow 0.22s;
+  }
+  .loc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 38px rgba(43,39,48,0.08); }
+  .loc-icon { width: 50px; height: 50px; border-radius: 12px; background: var(--lavender-pale); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .loc-card h3 { font-family: 'Spectral', serif; font-size: 21px; font-weight: 700; color: var(--charcoal); margin-bottom: 3px; }
+  .loc-card span { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+  /* ── REFERRAL ── */
+  #referral { background: var(--white); padding: var(--gap) 0; }
+  .ref-wrap { max-width: 1200px; margin: 0 auto; padding: 0 54px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+  .r-eyebrow { font-size: 10.5px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .r-eyebrow::before { content: ''; width: 22px; height: 1px; background: var(--gold); }
+  .r-title { font-family: 'Spectral', serif; font-size: clamp(30px,3.2vw,44px); font-weight: 700; color: var(--charcoal); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+  .r-desc { font-size: 15.5px; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+  .contacts { display: flex; flex-direction: column; gap: 14px; }
+  .c-row { display: flex; align-items: center; gap: 14px; font-size: 14px; color: var(--muted); }
+  .c-row a { color: var(--charcoal); font-weight: 600; text-decoration: none; }
+  .c-row a:hover { color: var(--lavender); }
+  .c-ico { width: 40px; height: 40px; border-radius: 10px; background: var(--lavender-pale); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+
+  .embed-box { background: var(--white); border-radius: 24px; border: 1px solid var(--taupe); overflow: hidden; box-shadow: 0 8px 48px rgba(43,39,48,0.08); }
+  .embed-top {
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--lavender-dark) 100%);
+    padding: 26px 30px;
+    color: #fff;
+  }
+  .embed-top h3 { font-family: 'Spectral', serif; font-size: 23px; font-weight: 700; margin-bottom: 4px; }
+  .embed-top p { font-size: 13px; opacity: 0.8; font-weight: 300; }
+  .embed-frame { width: 100%; height: 700px; border: none; display: block; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--charcoal); padding: 58px 54px 30px; }
+  .foot-in { max-width: 1200px; margin: 0 auto; }
+  .foot-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 56px; padding-bottom: 38px; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 26px; }
+  .f-brand .logo-name { color: #fff; font-size: 19px; }
+  .f-brand p { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.42); margin-top: 12px; max-width: 270px; line-height: 1.8; }
+  .f-col h4 { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+  .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .f-col ul a { font-size: 13.5px; font-weight: 300; color: rgba(255,255,255,0.56); text-decoration: none; transition: color 0.2s; }
+  .f-col ul a:hover { color: var(--lavender); }
+  .foot-bot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .foot-bot p { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.25); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 920px) {
+    nav { padding: 0 22px; }
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: var(--snow); border-bottom: 1px solid var(--taupe); padding: 22px; gap: 18px; box-shadow: 0 8px 28px rgba(43,39,48,0.07); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; padding: 56px 22px; gap: 0; }
+    .hero-right { display: none; }
+    .hero-bg-blob, .hero-bg-blob2, .hero-ring, .hero-ring2 { display: none; }
+    .svc-wrap, .about-wrap, .prog-wrap, .loc-wrap, .ref-wrap { padding: 0 22px; }
+    footer { padding: 44px 22px 26px; }
+    .svc-cards { grid-template-columns: 1fr; }
+    .about-wrap { grid-template-columns: 1fr; gap: 44px; }
+    .w-tags { grid-template-columns: 1fr 1fr; }
+    .about-panels { grid-template-columns: 1fr 1fr; }
+    .prog-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .loc-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .ref-wrap { grid-template-columns: 1fr; gap: 44px; }
+    .foot-top { grid-template-columns: 1fr; gap: 28px; }
+    .embed-frame { height: 560px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+    </div>
+    <div class="logo-text">
+      <span class="logo-name">Uplifted Living Services</span>
+      <span class="logo-tag">Care &amp; Assisted Living</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#program">Program</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="https://forms.formhippo.com/OL4C5Q1/ULS" target="_blank" class="nav-pill">Referral</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-blob"></div>
+  <div class="hero-bg-blob2"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker"><div class="kicker-star"></div>24-Hour Personalized Care</div>
+      <h1 class="hero-h1">Uplifting Lives<br>Through <em>Compassionate</em><br>Care</h1>
+      <p class="hero-sub">At Uplifted Living Services, we provide personalized 24-hour customized and assisted living solutions designed to support each individual with dignity, comfort, and respect.</p>
+      <div class="hero-btns">
+        <a href="https://forms.formhippo.com/OL4C5Q1/ULS" target="_blank" class="btn-main">
+          Refer Someone Today
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="hero-phone">Call: <a href="tel:6515058393">(651) 505-8393</a></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="float-card">
+        <div class="fc-icon fci-lav">🌟</div>
+        <div class="fc-txt"><strong>Dignity-First Care</strong><span>Every resident treated with deep respect</span></div>
+      </div>
+      <div class="float-card">
+        <div class="fc-icon fci-gold">📋</div>
+        <div class="fc-txt"><strong>Waiver Programs</strong><span>CADI, BI, DD &amp; Elderly Waivers accepted</span></div>
+      </div>
+      <div class="float-card">
+        <div class="fc-icon fci-taupe">🏡</div>
+        <div class="fc-txt"><strong>Residential Settings</strong><span>Comfortable, home-like environments</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-wrap">
+    <div class="sec-center">
+      <div class="sec-eyebrow">What We Offer</div>
+      <h2 class="sec-title">Our Care Services</h2>
+    </div>
+    <div class="svc-cards">
+      <div class="s-card">
+        <div class="s-icon">🛁</div>
+        <h3>Personal Care Assistance</h3>
+        <p>We support daily living activities such as bathing, dressing, and grooming with compassion, ensuring every individual's dignity and independence is honored.</p>
+      </div>
+      <div class="s-card">
+        <div class="s-icon">💊</div>
+        <h3>Medication Support</h3>
+        <p>Safe and accurate management of medication schedules by trained professionals — ensuring every dose is given correctly, on time, and with care.</p>
+      </div>
+      <div class="s-card">
+        <div class="s-icon">📄</div>
+        <h3>Individualized Care</h3>
+        <p>Personalized care plans delivered in smaller residential settings that carefully balance each resident's independence with the right level of professional support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-orb"></div>
+  <div class="about-orb2"></div>
+  <div class="about-wrap">
+    <div>
+      <div class="a-eyebrow">Who We Serve</div>
+      <h2 class="a-title">Specialized Care &amp;<br>Waiver Programs</h2>
+      <p class="a-text">Uplifted Living Services is committed to simplifying care through comprehensive residential and in-home support. We serve individuals utilizing CADI, Brain Injury (BI), Developmental Disabilities (DD), and Elderly Waivers.</p>
+      <div class="w-tags">
+        <div class="w-tag">CADI Waiver</div>
+        <div class="w-tag">Brain Injury (BI)</div>
+        <div class="w-tag">Developmental Disabilities</div>
+        <div class="w-tag">Elderly Waiver</div>
+      </div>
+    </div>
+    <div class="about-panels">
+      <div class="a-panel"><div class="ico">🕐</div><h4>24 / 7</h4><p>Round-the-clock care and on-site support</p></div>
+      <div class="a-panel"><div class="ico">🏡</div><h4>Home-Like</h4><p>Residential settings that feel safe and warm</p></div>
+      <div class="a-panel"><div class="ico">🤝</div><h4>Person-First</h4><p>Care plans tailored to each individual</p></div>
+      <div class="a-panel"><div class="ico">✅</div><h4>Waiver-Ready</h4><p>All major MN waivers accepted</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="prog-wrap">
+    <div class="prog-panel">
+      <h3>What Our Program Includes</h3>
+      <ul class="prog-list">
+        <li><span class="tick"></span>24-hour on-site support and supervision</li>
+        <li><span class="tick"></span>Individualized care planning and goal-setting</li>
+        <li><span class="tick"></span>Comfortable, residential home environments</li>
+        <li><span class="tick"></span>Community integration and daily engagement</li>
+        <li><span class="tick"></span>Transportation assistance and coordination</li>
+        <li><span class="tick"></span>Family communication and ongoing updates</li>
+        <li><span class="tick"></span>Skilled staff trained in disability care</li>
+      </ul>
+    </div>
+    <div>
+      <div class="p-eyebrow">Our Program</div>
+      <h2 class="p-title">Customized &amp;<br>Assisted Living</h2>
+      <p class="p-text">We provide 24-hour customized living services for adults with physical and/or mental disabilities in safe, comfortable environments focused on enhancing quality of life. Our team partners with each resident and their family to ensure care that truly supports their goals and well-being.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="locations">
+  <div class="loc-wrap">
+    <div class="sec-center">
+      <div class="sec-eyebrow">Where We Are</div>
+      <h2 class="sec-title">Our Locations</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-icon">📍</div>
+        <div><h3>Apple Valley</h3><span>Minnesota</span></div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-icon">📍</div>
+        <div><h3>Burnsville</h3><span>Minnesota</span></div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-icon">📍</div>
+        <div><h3>Savage</h3><span>Minnesota</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERRAL -->
+<section id="referral">
+  <div class="ref-wrap">
+    <div>
+      <div class="r-eyebrow">Get In Touch</div>
+      <h2 class="r-title">Make a<br>Referral</h2>
+      <p class="r-desc">Ready to connect someone with the uplifting care they deserve? Use the referral form or reach out to us directly — our team responds to every inquiry promptly.</p>
+      <div class="contacts">
+        <div class="c-row"><div class="c-ico">📞</div><span>Call us at <a href="tel:6515058393">(651) 505-8393</a></span></div>
+        <div class="c-row"><div class="c-ico">✉️</div><span><a href="mailto:referrals@upliftedlivingservices.com">referrals@upliftedlivingservices.com</a></span></div>
+        <div class="c-row"><div class="c-ico">🕐</div><span>Available 24/7 for urgent care needs</span></div>
+      </div>
+    </div>
+    <div class="embed-box">
+      <div class="embed-top">
+        <h3>Referral Form</h3>
+        <p>Complete the form — our care team will follow up within 24 hours.</p>
+      </div>
+      <iframe class="embed-frame" src="https://forms.formhippo.com/OL4C5Q1/ULS" title="Uplifted Living Services Referral Form" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="f-brand">
+        <div class="nav-logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-name" style="color:#fff;">Uplifted Living Services</span>
+            <span class="logo-tag">Care &amp; Assisted Living</span>
+          </div>
+        </div>
+        <p>Providing personalized 24-hour assisted living solutions with dignity, comfort, and respect in Apple Valley, Burnsville, and Savage, MN.</p>
+      </div>
+      <div class="f-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#locations">Locations</a></li>
+          <li><a href="https://forms.formhippo.com/OL4C5Q1/ULS" target="_blank">Referral Form</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:6515058393">(651) 505-8393</a></li>
+          <li><a href="mailto:referrals@upliftedlivingservices.com" style="font-size:12px;">referrals@upliftedlivingservices.com</a></li>
+          <li><a href="#">Apple Valley, MN</a></li>
+          <li><a href="#">Burnsville, MN</a></li>
+          <li><a href="#">Savage, MN</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p>© 2025 Uplifted Living Services. All rights reserved.</p>
+      <p>Serving Apple Valley, Burnsville &amp; Savage, Minnesota</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.s-card, .a-panel, .loc-card, .float-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
